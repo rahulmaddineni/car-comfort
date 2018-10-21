@@ -1,0 +1,25 @@
+
+.location-input-card {
+	background-color: #000000;
+	color: white;
+	margin: 20% 10% 0 10%;
+}
+
+.card-header {
+	padding: 0.75rem;
+}
+
+form {
+	width: 100%;
+}
+
+input {
+	margin-top: 10px;
+}
+
+input {
+	background-color: #ffffff;
+	color: #000000;
+	width: 100%;
+	padding: 10px;
+}

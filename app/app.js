@@ -8,6 +8,9 @@
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
+// Import Bootstrap
+import '!!style-loader!css-loader!../vendor/css/bootstrap.min.css';
+
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';

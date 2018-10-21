@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import PropTypes from 'prop-types';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -10,6 +11,10 @@ import reducer from './reducer';
 import saga from './saga';
 import CarSvg from '../../components/CarSvg';
 import Header from '../../components/Header';
+import createLocationSearchForm from '../../components/LocationSearchForm';
+import { getLocationResults } from './actions';
+
+const LocationSearchForm = createLocationSearchForm('locationSearchForm');
 
 /* eslint-disable react/prefer-stateless-function */
 export class CarPage extends React.Component {
@@ -17,11 +22,27 @@ export class CarPage extends React.Component {
     return (
       <div>
         <Header />
-        <CarSvg width="50%" height="50%" />
+        <div className="row">
+          <div className="col-sm-6">
+            <CarSvg />
+          </div>
+          <div className="col-sm-6">
+            <LocationSearchForm onChange={this.handleLocationSearchChange} />
+          </div>
+        </div>
       </div>
     );
   }
+  handleLocationSearchChange = data => {
+    const { dispatch } = this.props;
+    const query = Object.entries(data)[1][1].entries[0][1];
+    dispatch(getLocationResults(query));
+  };
 }
+
+CarPage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = createStructuredSelector({
   carpage: makeSelectCarPage(),
